@@ -27,17 +27,51 @@ body {
     to { opacity: 1; transform: translateY(0); } 
 }
 
+/* الهيدر وزر الوضع الليلي الواضح */
+.header { text-align: center; margin-bottom: 12px; width: 100%; }
+.header-top { display: flex; justify-content: flex-end; width: 100%; margin-bottom: 5px; }
+
+.theme-btn {
+    background-color: #e2e8f0;
+    color: #2c3e50;
+    border: 2px solid #cbd5e1;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.header h1 { color: var(--kurdish-green); margin: 0 0 4px 0; font-size: 1.8rem; }
+.header p { color: #666; margin: 0 0 8px 0; font-size: 0.95rem; }
+
+/* شريط اسم المبرمج في الشاشة الرئيسية */
+.home-dev-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #ffffff;
+    background: linear-gradient(45deg, #278E43, #1b632f);
+    border: 2px solid var(--kurdish-yellow);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    animation: floatBadge 2s ease-in-out infinite;
+}
+
+/* العناصر المشتركة */
 .top-bar { width: 100%; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; margin-bottom: 10px; }
 .back-btn { background: none; border: none; font-size: 1rem; color: var(--primary); font-weight: bold; cursor: pointer; }
 .title-text { color: var(--primary); font-size: 1.1rem; font-weight: bold; text-align: center; }
-.header h1 { color: var(--kurdish-green); margin: 0 0 5px 0; text-align: center; }
-.header p { color: #666; margin-top: 0; font-size: 0.95rem; text-align: center; }
 
+/* شريط التقدم */
 .progress-wrapper { width: 100%; margin: 10px 0 20px 0; text-align: center; flex-shrink: 0; }
 .progress-text { font-size: 0.85rem; color: #666; margin-bottom: 5px; font-weight: bold; }
 .progress-container { width: 100%; height: 8px; background-color: #ddd; border-radius: 10px; overflow: hidden; }
 .progress-bar { height: 100%; width: 0%; background-color: var(--kurdish-green); transition: width 0.4s ease; }
 
+/* القائمة الرئيسية (الفئات) */
 .categories-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; overflow-y: auto; padding-bottom: 20px; }
 .category-card {
     background: white; border: 2px solid #ddd; border-radius: 12px; padding: 15px 5px;
@@ -48,6 +82,7 @@ body {
 .cat-icon { font-size: 2.2rem; }
 .cat-title-ar { font-size: 1rem; font-weight: bold; color: var(--primary); }
 
+/* شاشة اختيار النمط */
 .modes-list { display: flex; flex-direction: column; gap: 15px; width: 100%; margin-top: 20px;}
 .mode-btn {
     background: white; border: 2px solid #ddd; border-radius: 15px; padding: 20px;
@@ -59,6 +94,7 @@ body {
 .mode-btn-text h3 { margin: 0 0 5px 0; color: var(--primary); font-size: 1.2rem; }
 .mode-btn-text p { margin: 0; color: #777; font-size: 0.9rem; }
 
+/* المطابقة */
 .match-board { display: flex; justify-content: space-between; width: 100%; gap: 10px; flex-grow: 1; }
 .match-col { display: flex; flex-direction: column; gap: 10px; width: 50%; }
 .match-card {
@@ -70,11 +106,13 @@ body {
 .match-card.matched { background-color: var(--kurdish-green); color: white; pointer-events: none; opacity: 0.7; }
 .match-card.wrong { animation: shake 0.4s; border: 2px solid var(--kurdish-red); }
 
+/* الاختبار */
 .quiz-board { display: flex; flex-direction: column; align-items: center; width: 100%; flex-grow: 1; }
 .question-box {
     background: white; width: 100%; padding: 30px 20px; border-radius: 15px; text-align: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.08); margin-bottom: 20px; font-weight: bold;
     color: var(--primary); display: flex; flex-direction: column; justify-content: center; min-height: 140px;
+    box-sizing: border-box;
 }
 .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; }
 .option-btn {
@@ -90,6 +128,7 @@ body {
     50% { transform: translateX(5px); } 
 }
 
+/* شاشة الفوز */
 .victory-screen {
     position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255, 255, 255, 0.95);
     display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -98,26 +137,17 @@ body {
 .victory-screen.show { opacity: 1; pointer-events: auto; }
 .btn { padding: 12px 24px; font-size: 1rem; border-radius: 8px; cursor: pointer; border: none; font-weight: bold; margin-top: 10px;}
 .btn-primary { background: var(--kurdish-green); color: white; }
-/* --- إعدادات زر الوضع الليلي --- */
-.theme-btn {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.theme-btn:hover {
-    transform: scale(1.1);
-}
 
 /* --- ألوان الوضع الليلي (Dark Mode) --- */
 body.dark-mode {
     --primary: #ecf0f1;
     --bg-color: #1a1a2e;
+}
+
+body.dark-mode .theme-btn {
+    background-color: #16213e;
+    color: #FEBE10;
+    border-color: #FEBE10;
 }
 
 body.dark-mode .category-card,
@@ -127,16 +157,13 @@ body.dark-mode .question-box,
 body.dark-mode .option-btn {
     background-color: #16213e;
     border-color: #0f3460;
-    color: #e94560; /* لون النصوص الأساسية في الوضع الليلي */
+    color: #ecf0f1;
 }
 
-/* تخصيص النصوص في الوضع الليلي */
 body.dark-mode .cat-title-ar,
 body.dark-mode .mode-btn-text h3,
 body.dark-mode .title-text,
-body.dark-mode .match-card,
-body.dark-mode .question-box,
-body.dark-mode .option-btn {
+body.dark-mode .back-btn {
     color: #ecf0f1;
 }
 
@@ -146,11 +173,10 @@ body.dark-mode .progress-text {
     color: #a0a0a0;
 }
 
-/* تخصيص شاشة الفوز في الوضع الليلي */
 body.dark-mode .victory-screen {
     background: rgba(26, 26, 46, 0.95);
 }
-/* --- إصلاح تفاعلات الألوان في الوضع الليلي --- */
+
 body.dark-mode .option-btn.correct,
 body.dark-mode .match-card.matched {
     background-color: var(--kurdish-green) !important;
@@ -170,5 +196,85 @@ body.dark-mode .match-card.wrong {
 
 body.dark-mode .match-card.selected {
     border-color: var(--kurdish-yellow) !important;
-    background-color: #2a3b5c !important; /* لون تحديد متناسق مع الليل */
+    background-color: #2a3b5c !important;
+}
+
+/* --- تصميم شاشة البداية المتحركة (Splash Screen) --- */
+#splash-screen {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, #16213e 0%, #278E43 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#splash-screen.hide-splash {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.splash-content {
+    text-align: center;
+    padding: 20px;
+}
+
+.splash-sun {
+    font-size: 5.5rem;
+    display: inline-block;
+    animation: spinPulse 4s infinite linear;
+}
+
+.splash-logo {
+    color: #ffffff;
+    font-size: 2.8rem;
+    margin: 10px 0 5px 0;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.splash-sub {
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.dev-container {
+    background: rgba(0, 0, 0, 0.35);
+    border: 2px solid var(--kurdish-yellow);
+    padding: 14px 28px;
+    border-radius: 30px;
+    box-shadow: 0 0 20px rgba(254, 190, 16, 0.4);
+    animation: popUp 0.8s ease forwards;
+}
+
+.animated-dev-text {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--kurdish-yellow);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    animation: pulseGlow 1.5s infinite alternate;
+}
+
+@keyframes spinPulse {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.12); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes pulseGlow {
+    from { color: #ffffff; transform: scale(0.98); }
+    to { color: #FEBE10; transform: scale(1.03); }
+}
+
+@keyframes popUp {
+    0% { opacity: 0; transform: translateY(25px) scale(0.8); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes floatBadge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
 }

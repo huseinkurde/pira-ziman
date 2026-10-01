@@ -15,7 +15,7 @@ function initTheme() {
     
     if (savedTheme === 'dark') {
         document.body.classList.add('dark-mode');
-        if (themeBtn) themeBtn.innerText = '☀️';
+        if (themeBtn) themeBtn.innerText = '☀️ الوضع النهاري';
     }
 }
 
@@ -27,18 +27,19 @@ function toggleTheme() {
     
     if (body.classList.contains('dark-mode')) {
         localStorage.setItem('pz_theme', 'dark');
-        themeBtn.innerText = '☀️';
+        if (themeBtn) themeBtn.innerText = '☀️ الوضع النهاري';
     } else {
         localStorage.setItem('pz_theme', 'light');
-        themeBtn.innerText = '🌙';
+        if (themeBtn) themeBtn.innerText = '🌙 الوضع الليلي';
     }
 }
 
 // ----------------------------------------------------
-// تهيئة التطبيق
+// تهيئة التطبيق والتنقل
 // ----------------------------------------------------
 function initApp() {
     const grid = document.getElementById('categories-grid');
+    grid.innerHTML = '';
     appData.forEach(cat => {
         const div = document.createElement('div');
         div.className = 'category-card';
@@ -130,7 +131,7 @@ function updateProgress(type) {
 }
 
 // ----------------------------------------------------
-// محرك المطابقة (خالي من الصوت)
+// محرك المطابقة
 // ----------------------------------------------------
 function loadMatchRound() {
     updateProgress('match');
@@ -186,7 +187,7 @@ function selectMatch(card, type) {
 }
 
 // ----------------------------------------------------
-// محرك الاختبارات (خالي من الصوت)
+// محرك الاختبارات
 // ----------------------------------------------------
 function loadNextQuiz() {
     updateProgress('quiz');
@@ -234,8 +235,17 @@ function loadNextQuiz() {
     });
 }
 
-// تشغيل اللعبة والوضع الليلي فور تحميل الصفحة
+// ----------------------------------------------------
+// تشغيل التطبيق وإخفاء شاشة البداية بعد 2.5 ثانية
+// ----------------------------------------------------
 window.onload = () => {
     initApp();
     initTheme();
+    
+    setTimeout(() => {
+        const splash = document.getElementById('splash-screen');
+        if (splash) {
+            splash.classList.add('hide-splash');
+        }
+    }, 2500);
 };

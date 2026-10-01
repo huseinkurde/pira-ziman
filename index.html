@@ -4,23 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pira Ziman - تطبيق تعلم الكردية</title>
-    <!-- ربط ملف التصميم -->
-    <link rel="stylesheet" href="style.css">
-    <!-- ربط ملف التصميم -->
-    <link rel="stylesheet" href="style.css">
-    <!-- ربط الـ Manifest لتحويله لتطبيق -->
+    <!-- إضافة ?v=10 لإجبار المتصفح على تحميل التصميم الجديد فوراً -->
+    <link rel="stylesheet" href="style.css?v=10">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#278E43">
+    <link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
+
+    <!-- شاشة البداية المتحركة (Splash Screen) -->
+    <div id="splash-screen">
+        <div class="splash-content">
+            <div class="splash-sun">☀️</div>
+            <h1 class="splash-logo">Pira Ziman</h1>
+            <p class="splash-sub">تعلم مفردات اللغة الكوردية</p>
+            <div class="dev-container">
+                <div class="animated-dev-text">برمجة التطبيق: حسين ابراهيم</div>
+            </div>
+        </div>
+    </div>
 
     <!-- الشاشة 1: القائمة الرئيسية -->
     <div id="home-screen" class="screen active">
         <div class="header">
-            <!-- زر التبديل للوضع الليلي تم إضافته هنا -->
-            <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙</button>
+            <div class="header-top">
+                <button id="theme-toggle" class="theme-btn" onclick="toggleTheme()">🌙 الوضع الليلي</button>
+            </div>
             <h1>Pira Ziman</h1>
             <p>المكتبة الشاملة لتعلم الكرمانجية</p>
+            <!-- شريط اسم المبرمج المتحرك -->
+            <div class="home-dev-badge"> برمجة التطبيق: حسين ابراهيم </div>
         </div>
         <div class="categories-grid" id="categories-grid"></div>
     </div>
@@ -99,24 +112,19 @@
         <button class="btn btn-primary" onclick="showScreen('home-screen')">العودة للرئيسية</button>
     </div>
 
-    <!-- ربط ملفات الجافاسكريبت (الترتيب مهم جداً: البيانات أولاً ثم المنطق) -->
-    <script src="data.js"></script>
-    <script src="script.js"></script>
-    <!-- ربط ملفات الجافاسكريبت -->
-    <script src="data.js"></script>
-    <script src="script.js"></script>
-    
-    <!-- تفعيل ميزة العمل بدون إنترنت -->
+    <!-- ربط ملفات الجافاسكريبت مع ?v=10 لتحديثها فوراً -->
+    <script src="data.js?v=10"></script>
+    <script src="script.js?v=10"></script>
+
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                .then(reg => console.log('Service Worker Registered!', reg))
-                .catch(err => console.error('Service Worker Failed!', err));
+                navigator.serviceWorker.register('sw.js?v=10')
+                .then(reg => {
+                    reg.update(); // إجبار المتصفح على فحص التحديثات فوراً
+                });
             });
         }
     </script>
-</body>
-</html>
 </body>
 </html>

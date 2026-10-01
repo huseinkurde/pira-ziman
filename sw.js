@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pira-ziman-v1';
+const CACHE_NAME = 'pira-ziman-v10';
 // الملفات التي نريد حفظها لتعمل بدون إنترنت
 const ASSETS_TO_CACHE = [
     './',
